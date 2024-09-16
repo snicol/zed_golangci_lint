@@ -25,3 +25,29 @@ brew install golangci-lint golangci-lint-langserver
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 go install github.com/nametake/golangci-lint-langserver@latest
 ```
+
+## Configuration
+
+To change the command options run by the extension, open `~/.config/zed/settings.json` and add the
+following `lsp` configuration. `"lsp"` itself is a root level object in the settings file.
+
+```jsonc
+{
+  // ...
+  "lsp": {
+    "golangci-lint": {
+      "initialization_options": {
+        "command": [
+          "golangci-lint",
+          "run",
+          "--out-format",
+          "json",
+          "--issues-exit-code=1",
+          "--fix" // e.g. Add "--fix" if you'd like golangci-lint to attempt to fix issues.
+        ]
+      }
+    }
+  }
+  // ...
+}
+```
